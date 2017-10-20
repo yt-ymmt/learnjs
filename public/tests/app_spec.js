@@ -26,5 +26,13 @@ describe('LearnJS', function () {
             learnjs.appOnReady();
             expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
         });
+
+        it('subscribes to the hash change event', function(){
+            // hashChangeでの動作を確認するため、appOnReady()後にspyしてhashChangeを実行する
+            learnjs.appOnReady();
+            spyOn(learnjs, 'showView');
+            $(window).trigger('hashchange');
+            expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
+        });
     });
 });
