@@ -12,12 +12,6 @@ learnjs.problems = [
     }
 ];
 
-learnjs.applyObject = function (obj, elem) {
-    for (var key in obj) {
-        elem.find('[data-name="' + key + '"]').text(obj[key]);
-    }
-};
-
 learnjs.template = function (name) {
     return $('.templates .' + name).clone();
 };
@@ -34,6 +28,19 @@ learnjs.buildCorrectFlash = function (problemNum) {
     }
 
     return correctFlash;
+};
+
+learnjs.applyObject = function (obj, elem) {
+    for (var key in obj) {
+        elem.find('[data-name="' + key + '"]').text(obj[key]);
+    }
+};
+
+learnjs.flashElement = function (elem, content) {
+    elem.fadeOut('fast', function () {
+        elem.html(content);
+        elem.fadeIn();
+    });
 };
 
 learnjs.problemView = function (data) {
@@ -62,13 +69,6 @@ learnjs.problemView = function (data) {
     view.find('.title').text('Problem #' + problemNumber);
     learnjs.applyObject(problemData, view);
     return view;
-};
-
-learnjs.flashElement = function (elem, content) {
-    elem.fadeOut('fast', function () {
-        elem.html(content);
-        elem.fadeIn();
-    });
 };
 
 learnjs.showView = function (hash) {
