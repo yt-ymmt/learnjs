@@ -17,11 +17,58 @@
         .templates {
             display: none;
         }
+
+        .inline-list {
+            margin-bottom: 0;
+        }
+
+        .inline-list li {
+            display: inline;
+            margin: 0 20px 0 0;
+        }
+
+        .fixed-top {
+            position: fixed;
+            top: 0;
+            z-index: 1024;
+        }
+
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .hover-links a {
+            text-decoration: none;
+        }
+
+        .hover-links a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-container {
+            padding-left: 40px;
+            background: #666666;
+        }
+
+        .nav-container a {
+            color: white;
+        }
     </style>
 </head>
 <body>
 <div class="markup">
+    <div class="nav-container no-select fixed-top u-full-width">
+        <ul class="inline-list hover-links nav-list six columns">
+            <li><a href="#" class="text-lg">LearnJS</a></li>
+            <li><a href="#problem-1">Start</a></li>
+        </ul>
+    </div>
     <div class="view-container container">
+    </div>
+    <div class="templates">
         <div class="landing-view">
             <div class="row">
                 <div class="one-half column">
@@ -33,8 +80,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="templates">
         <div class="problem-view">
             <h3 class="title"></h3>
             <p data-name="description"></p>
@@ -50,6 +95,9 @@
         <div class="correct-flash">
             <span>Correct!</span>
             <a href="">Next Problem</a>
+        </div>
+        <div class="skip-btn">
+            <a href="">Skip this Problem</a>
         </div>
     </div>
 </div>

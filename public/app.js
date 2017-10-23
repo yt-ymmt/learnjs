@@ -12,6 +12,10 @@ learnjs.problems = [
     }
 ];
 
+learnjs.triggerEvent = function (name, args) {
+    $('.view-container > *').trigger(name, args);
+};
+
 learnjs.template = function (name) {
     return $('.templates .' + name).clone();
 };
@@ -43,6 +47,10 @@ learnjs.flashElement = function (elem, content) {
     });
 };
 
+learnjs.landingView = function () {
+    return learnjs.template('landing-view');
+};
+
 learnjs.problemView = function (data) {
     var problemNumber = parseInt(data, 10);
     var view = $('.templates .problem-view').clone();
@@ -65,6 +73,15 @@ learnjs.problemView = function (data) {
         return false;
     }
 
+    if (problemNumber < learnjs.problems.length) {
+        var buttonItem = learnjs.template('skip-btn');
+        buttonItem.find('a').attr('href', '#problem-' + (problemNumber + 1));
+        $('.nav-list').append(buttonItem);
+        view.bind('removingView', function () {
+            buttonItem.remove();
+        });
+    }
+
     view.find('.check-btn').click(checkAnswerClick);
     view.find('.title').text('Problem #' + problemNumber);
     learnjs.applyObject(problemData, view);
@@ -73,7 +90,9 @@ learnjs.problemView = function (data) {
 
 learnjs.showView = function (hash) {
     var routes = {
-        '#problem': learnjs.problemView
+        '#problem': learnjs.problemView,
+        '#': learnjs.landingView,
+        '': learnjs.landingView
     };
 
     var hashParts = hash.split('-');
@@ -81,6 +100,7 @@ learnjs.showView = function (hash) {
 
     if (viewFn) {
         var view = viewFn(hashParts[1]);
+        learnjs.triggerEvent('removingView', []);
         $('.view-container').empty().append(view);
     }
 };
