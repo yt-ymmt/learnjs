@@ -11,20 +11,31 @@
     <script src='./app.js'></script>
     <style type="text/css" media="all">
         body {
-            margin-top: 30px;
+            margin-top: 60px;
         }
 
         .templates {
             display: none;
         }
 
-        .inline-list {
-            margin-bottom: 0;
+        .fixed-width-text {
+            font-family: "Consolas", "Courier New", monospace
         }
 
-        .inline-list li {
-            display: inline;
-            margin: 0 20px 0 0;
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+
+        .nav-container {
+            padding-left: 40px;
+            background: #666;
+        }
+
+        .nav-container a {
+            color: white;
         }
 
         .fixed-top {
@@ -33,11 +44,13 @@
             z-index: 1024;
         }
 
-        .no-select {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        .inline-list {
+            margin-bottom: 0; /* Skeleton reset */
+        }
+
+        .inline-list li {
+            display: inline;
+            margin: 0 20px 0 0;
         }
 
         .hover-links a {
@@ -48,15 +61,18 @@
             text-decoration: underline;
         }
 
-        .nav-container {
-            padding-left: 40px;
-            background: #666666;
+        .navbar-padding {
+            padding-top: 7px;
+            display: inline-block;
         }
 
-        .nav-container a {
-            color: white;
+        .text-lg {
+            font-size: 32px;
         }
     </style>
+    <meta name="google-signin-client_id"
+          content="1044128127379-soc3bk9kkrlerdtm64drip2ts42kgnkk.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
 <div class="markup">
@@ -65,6 +81,11 @@
             <li><a href="#" class="text-lg">LearnJS</a></li>
             <li><a href="#problem-1">Start</a></li>
         </ul>
+        <div class="four columns">
+            <span class="navbar-padding u-pull-right">
+                <span class="g-signin2" data-onsuccess="googleSignIn"></span>
+            </span>
+        </div>
     </div>
     <div class="view-container container">
     </div>
