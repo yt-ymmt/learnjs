@@ -106,7 +106,7 @@ learnjs.problemView = function (data) {
 learnjs.showView = function (hash) {
     var routes = {
         '#problem': learnjs.problemView,
-        '#profile': learnjs.problemView,
+        '#profile': learnjs.profileView,
         '#': learnjs.landingView,
         '': learnjs.landingView
     };
