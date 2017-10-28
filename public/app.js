@@ -175,17 +175,22 @@ function googleSignIn(googleUser) {
         }).then(function (userUpdate) {
             var creds = AWS.config.credentials;
             var newToken = userUpdate.getAuthResponse().id_token;
+            console.log(newToken);
             creds.params.Logins['accounts.google.com'] = newToken;
             return learnjs.awsRefresh();
         });
     }
 
-    learnjs.awsRefresh().then(function (id) {
-        learnjs.identity.resolve({
-            id: id,
-            email: googleUser.getBasicProfile().getEmail(),
-            refresh: refresh
+    learnjs.awsRefresh()
+        .then(function (id) {
+            learnjs.identity.resolve({
+                id: id,
+                email: googleUser.getBasicProfile().getEmail(),
+                refresh: refresh
+            });
+        })
+        .fail(function (err) {
+            console.log(err);
         });
-    });
 }
 
