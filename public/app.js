@@ -149,6 +149,7 @@ learnjs.appOnReady = function () {
 learnjs.sendDbRequest = function (req, retry) {
     var promise = new $.Deferred();
     req.on('error', function (error) {
+        console.log(error);
         if (error.code === 'CredentialsError') {
             learnjs.identity.refresh().then(function () {
                 return retry();
@@ -168,7 +169,7 @@ learnjs.sendDbRequest = function (req, retry) {
     return promise;
 };
 
-learnjs.saveAnswer = function () {
+learnjs.saveAnswer = function (problemId,answer) {
     return learnjs.identity.then(function (identity) {
         var db = new AWS.DynamoDB.DocumentClient();
         var item = {
