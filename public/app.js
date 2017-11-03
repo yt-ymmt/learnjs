@@ -149,7 +149,7 @@ learnjs.appOnReady = function () {
 learnjs.sendDbRequest = function (req, retry) {
     var promise = new $.Deferred();
     req.on('error', function (error) {
-        console.log(error);
+        console.error(error);
         if (error.code === 'CredentialsError') {
             learnjs.identity.refresh().then(function () {
                 return retry();
@@ -169,7 +169,7 @@ learnjs.sendDbRequest = function (req, retry) {
     return promise;
 };
 
-learnjs.saveAnswer = function (problemId,answer) {
+learnjs.saveAnswer = function (problemId, answer) {
     return learnjs.identity.then(function (identity) {
         var db = new AWS.DynamoDB.DocumentClient();
         var item = {
@@ -191,9 +191,9 @@ learnjs.fetchAnswer = function (problemId) {
         var db = new AWS.DynamoDB.DocumentClient();
         var item = {
             TableName: 'learnjs',
-            Item: {
+            Key: {
                 userId: identity.id,
-                problemId: problemId,
+                problemId: problemId
             }
         };
         return learnjs.sendDbRequest(db.get(item), function () {
@@ -211,6 +211,7 @@ learnjs.awsRefresh = function () {
     var deferred = new $.Deferred();
     AWS.config.credentials.refresh(function (err) {
         if (err) {
+            console.error(err);
             deferred.reject(err);
         } else {
             deferred.resolve(AWS.config.credentials.identityId);
@@ -256,6 +257,6 @@ function googleSignIn(googleUser) {
             });
         })
         .fail(function (err) {
-            console.log(err);
+            console.error(err);
         });
 }
