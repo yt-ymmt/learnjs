@@ -40,7 +40,7 @@ describe('lambda function', function () {
                     {answer: "true"},
                     {answer: "true"},
                     {answer: "!false"},
-                    {answer: "!false"},
+                    {answer: "!false"}
                 ]
             });
             expect(context.succeed).toHaveBeenCalledWith({"true": 3, "!false": 2});
@@ -61,7 +61,7 @@ describe('lambda function', function () {
                     {answer: "4 === 4"},
                     {answer: "5 === 5"},
                     {answer: "5 === 5"},
-                    {answer: "!false"},
+                    {answer: "!false"}
                 ]
             });
             expect(context.succeed).toHaveBeenCalledWith({
@@ -76,7 +76,7 @@ describe('lambda function', function () {
         it('fails the request if dynamo returns an error', function () {
             index.popularAnswers({problemNumber: 1}, context);
             index.dynamodb.scan.calls.first().args[1]('error');
-            expect(context.fail).toHaveBeenCalledWith('error')
+            expect(context.fail).toHaveBeenCalledWith('error');
         });
     });
 });
