@@ -1,5 +1,5 @@
 {
-    "CodeSha256": "sMW71E4W9B59OCmvZg73QoPLYkhyEbiyZFybB7XGqvI=", 
+    "CodeSha256": "UcdTFFE9gRU7nGnpFiqfqLewsIdutpzGZxJ9ET75CUU=", 
     "FunctionName": "populerAnswers", 
     "VpcConfig": {
         "SubnetIds": [], 
@@ -10,8 +10,8 @@
     "Version": "$LATEST", 
     "Role": "arn:aws:iam::659345161573:role/learnjs_lambda_exec", 
     "Timeout": 5, 
-    "LastModified": "2017-11-06T14:49:01.225+0000", 
-    "Handler": "index.echo", 
+    "LastModified": "2017-11-07T16:05:45.234+0000", 
+    "Handler": "index.popularAnswers", 
     "Runtime": "nodejs4.3", 
     "CodeSize": 790431, 
     "Description": ""
