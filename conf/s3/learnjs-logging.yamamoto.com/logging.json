@@ -1,0 +1,10 @@
+{
+    "Bucket": "learnjs.yamamoto.com",
+    "BucketLoggingStatus": {
+        "LoggingEnabled": {
+            "TargetBucket": "learnjs-logging.yamamoto.com",
+            "TargetGrants": [],
+            "TargetPrefix": ""
+        }
+    }
+}
